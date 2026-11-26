@@ -172,26 +172,62 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPhoneMask();
   setupReservationForm();
   initCookieConsent();
+  setupScrollReveal();
+  setupNavbarScroll();
 });
+
+// ================= REVELAÇÃO SUAVE AO ROLAR =================
+function setupScrollReveal() {
+  const elements = document.querySelectorAll('.reveal-on-scroll');
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  elements.forEach((el) => observer.observe(el));
+}
+
+function setupNavbarScroll() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (window.scrollY > 24) {
+        navbar.classList.add('shadow-xl', 'shadow-black/50', 'bg-forest-950/95');
+      } else {
+        navbar.classList.remove('shadow-xl', 'shadow-black/50', 'bg-forest-950/95');
+      }
+    },
+    { passive: true }
+  );
+}
 
 // ================= STATUS DE FUNCIONAMENTO (HORÁRIO DE SP) =================
 function updateOperatingStatus() {
   const now = new Date();
   const spString = now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
   const spDate = new Date(spString);
-  const day = spDate.getDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
+  const day = spDate.getDay();
   const hour = spDate.getHours();
   const minute = spDate.getMinutes();
   const currentMinutes = hour * 60 + minute;
 
   let isOpen = false;
   let statusMessage = 'Fechado no momento • Abrimos quarta às 16h';
-
-  // Horários oficiais:
-  // Seg (1) e Ter (2): Fechado
-  // Qua (3), Qui (4), Dom (0): 16:00 (960) às 00:00 (1440)
-  // Sex (5): 18:00 (1080) às 01:00 (+60)
-  // Sáb (6): 16:00 (960) às 01:00 (+60)
 
   if (day === 3 || day === 4 || day === 0) {
     if (currentMinutes >= 960 && currentMinutes < 1440) {
@@ -208,7 +244,6 @@ function updateOperatingStatus() {
       statusMessage = 'Fechado agora • Abre hoje às 18:00';
     }
   } else if (day === 6) {
-    // Madrugada de sexta para sábado (00:00 às 01:00)
     if (currentMinutes < 60) {
       isOpen = true;
       statusMessage = 'Aberto agora • Até 01:00';
@@ -224,7 +259,6 @@ function updateOperatingStatus() {
     statusMessage = 'Fechado hoje • Abrimos amanhã às 16:00';
   }
 
-  // Caso madrugada de sábado para domingo (00:00 às 01:00 de domingo)
   if (day === 0 && currentMinutes < 60) {
     isOpen = true;
     statusMessage = 'Aberto agora • Até 01:00';
@@ -247,11 +281,12 @@ function updateOperatingStatus() {
   }
 }
 
-// ================= CARDÁPIO =================
+// ================= CARDÁPIO COM ANIMAÇÃO EM CASCATA =================
 function setupMenuTabs() {
   const tabs = document.querySelectorAll('.menu-tab');
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
+      if (tab.classList.contains('active')) return;
       tabs.forEach((t) => t.classList.remove('active'));
       tab.classList.add('active');
       renderMenu(tab.dataset.category);
@@ -266,8 +301,11 @@ function renderMenu(category) {
   const items = MENU_DATA[category] || [];
   grid.innerHTML = items
     .map(
-      (item) => `
-      <div class="p-6 rounded-2xl bg-forest-850 border border-gold-500/20 hover:border-gold-400/60 transition-all flex flex-col justify-between">
+      (item, index) => `
+      <div
+        class="card-hover menu-item-animate p-6 rounded-2xl bg-forest-850 border border-gold-500/20 flex flex-col justify-between"
+        style="animation-delay: ${index * 65}ms"
+      >
         <div>
           <div class="flex items-start justify-between gap-3">
             <span class="px-2.5 py-0.5 rounded-full bg-gold-500/15 text-gold-400 text-[11px] font-display uppercase tracking-wider font-bold">
@@ -494,7 +532,6 @@ function renderReviews() {
 
   if (!listEl) return;
 
-  // Estatísticas
   const total = reviews.length;
   const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
   const avg = total ? (sum / total).toFixed(1) : '5.0';
@@ -510,7 +547,7 @@ function renderReviews() {
         <div class="flex items-center gap-2">
           <span class="w-6 text-stone-300 font-semibold">${star}★</span>
           <div class="flex-1 h-2 rounded-full bg-forest-900 overflow-hidden">
-            <div class="h-full bg-gold-500 rounded-full" style="width: ${pct}%"></div>
+            <div class="h-full bg-gold-500 rounded-full transition-all duration-500" style="width: ${pct}%"></div>
           </div>
           <span class="w-8 text-right text-stone-400">${pct}%</span>
         </div>
@@ -518,7 +555,6 @@ function renderReviews() {
     })
     .join('');
 
-  // Filtragem
   const filtered = reviews.filter((r) => {
     if (activeReviewFilter === 'all') return true;
     if (activeReviewFilter === '5') return r.rating === 5;
@@ -526,7 +562,7 @@ function renderReviews() {
   });
 
   listEl.innerHTML = filtered
-    .map((r) => {
+    .map((r, index) => {
       const initials = r.name
         .split(' ')
         .map((n) => n[0])
@@ -536,7 +572,10 @@ function renderReviews() {
       const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
 
       return `
-        <article class="p-6 rounded-2xl bg-forest-850 border border-gold-500/20">
+        <article
+          class="card-hover menu-item-animate p-6 rounded-2xl bg-forest-850 border border-gold-500/20"
+          style="animation-delay: ${index * 60}ms"
+        >
           <div class="flex items-start justify-between gap-4">
             <div class="flex items-center gap-3">
               <div class="w-11 h-11 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 font-display font-bold flex items-center justify-center">

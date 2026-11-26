@@ -53,25 +53,20 @@
       <div class="flex items-center justify-between h-20">
         <!-- Logo -->
         <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
-          <div class="w-12 h-12 shrink-0 transition-transform duration-300 group-hover:scale-105">
+          <div class="w-12 h-12 shrink-0 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-3">
             <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md" aria-hidden="true">
               <circle cx="60" cy="60" r="56" fill="#08130D" stroke="#D4AF37" stroke-width="3" />
               <circle cx="60" cy="60" r="50" fill="none" stroke="#D4AF37" stroke-width="1" stroke-dasharray="3 3" opacity="0.6" />
-              <!-- Coroa Full House -->
               <path d="M36 33 L43 21 L52 29 L60 17 L68 29 L77 21 L84 33 Z" fill="#D4AF37" />
-              <!-- Xícara -->
               <path d="M34 45 H82 V65 C82 78 72 87 58 87 C44 87 34 78 34 65 Z" fill="#112419" stroke="#D4AF37" stroke-width="2.5" />
-              <!-- Alça -->
               <path d="M82 50 H90 C95 50 98 54 98 59 C98 64 95 68 90 68 H82" fill="none" stroke="#D4AF37" stroke-width="2.5" />
-              <!-- Naipe de Espadas -->
               <path d="M58 51 C58 51 47 60 47 66 C47 70 50 72 53 72 C55 72 57 71 58 69 C59 71 61 72 63 72 C66 72 69 70 69 66 C69 60 58 51 58 51 Z" fill="#D4AF37" />
               <path d="M56 69 L54 77 H62 L60 69 Z" fill="#D4AF37" />
-              <!-- Pires -->
               <path d="M28 91 H88" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" />
             </svg>
           </div>
           <div>
-            <span class="block font-display text-xl sm:text-2xl font-bold tracking-wider text-gold-400 leading-none uppercase">
+            <span class="block font-display text-xl sm:text-2xl font-bold tracking-wider text-gold-400 group-hover:text-gold-300 transition-colors duration-300 leading-none uppercase">
               Café Full House
             </span>
             <span class="block text-[11px] tracking-[0.22em] text-stone-300 uppercase mt-1">
@@ -82,11 +77,11 @@
 
         <!-- Menu Desktop -->
         <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
-          <a href="#historia" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Nossa História</a>
-          <a href="#cardapio" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Cardápio</a>
-          <a href="#agenda" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Agenda</a>
-          <a href="#avaliacoes" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Avaliações</a>
-          <a href="#localizacao" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Localização</a>
+          <a href="#historia" class="nav-link text-stone-200 hover:text-gold-400">Nossa História</a>
+          <a href="#cardapio" class="nav-link text-stone-200 hover:text-gold-400">Cardápio</a>
+          <a href="#agenda" class="nav-link text-stone-200 hover:text-gold-400">Agenda</a>
+          <a href="#avaliacoes" class="nav-link text-stone-200 hover:text-gold-400">Avaliações</a>
+          <a href="#localizacao" class="nav-link text-stone-200 hover:text-gold-400">Localização</a>
         </nav>
 
         <!-- Botão Reserva + Menu Mobile -->
@@ -94,7 +89,7 @@
           <button
             type="button"
             onclick="openReserveModal()"
-            class="hidden sm:inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-gold-500/20 cursor-pointer"
+            class="btn-gold hidden sm:inline-flex items-center gap-2 font-display font-bold uppercase tracking-wider text-sm px-5 py-2.5 rounded-lg cursor-pointer"
           >
             <span>Reservar Mesa</span>
           </button>
@@ -104,12 +99,12 @@
             type="button"
             aria-label="Abrir menu de navegação"
             aria-expanded="false"
-            class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gold-500/30 text-gold-400 hover:bg-forest-800 transition-colors"
+            class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gold-500/30 text-gold-400 hover:bg-forest-800 hover:border-gold-400 transition-all duration-300 cursor-pointer"
           >
-            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="menu-icon-open" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="menu-icon-close" class="w-6 h-6 hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -118,17 +113,17 @@
     </div>
 
     <!-- Drawer Mobile / Tablet -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-forest-950 border-t border-gold-500/20 px-4 pt-4 pb-6">
+    <div id="mobile-menu" class="hidden lg:hidden bg-forest-950/98 border-t border-gold-500/20 px-4 pt-4 pb-6 animate-slide-down">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <a href="#historia" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Nossa História</a>
-        <a href="#cardapio" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Cardápio</a>
-        <a href="#agenda" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Programação & Shows</a>
-        <a href="#avaliacoes" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Avaliações</a>
-        <a href="#localizacao" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Horários & Localização</a>
+        <a href="#historia" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 hover:translate-x-1 transition-all duration-200 font-medium">Nossa História</a>
+        <a href="#cardapio" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 hover:translate-x-1 transition-all duration-200 font-medium">Cardápio</a>
+        <a href="#agenda" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 hover:translate-x-1 transition-all duration-200 font-medium">Programação & Shows</a>
+        <a href="#avaliacoes" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 hover:translate-x-1 transition-all duration-200 font-medium">Avaliações</a>
+        <a href="#localizacao" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 hover:translate-x-1 transition-all duration-200 font-medium">Horários & Localização</a>
         <button
           type="button"
           onclick="openReserveModal(); closeMobileMenu();"
-          class="sm:col-span-2 mt-2 w-full bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider py-3.5 rounded-lg transition-colors"
+          class="btn-gold sm:col-span-2 mt-2 w-full font-display font-bold uppercase tracking-wider py-3.5 rounded-lg cursor-pointer"
         >
           Reservar Mesa pelo WhatsApp
         </button>
@@ -143,7 +138,7 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="grid lg:grid-cols-12 gap-10 items-center">
         <!-- Coluna Texto -->
-        <div class="lg:col-span-7 text-center lg:text-left">
+        <div class="lg:col-span-7 text-center lg:text-left hero-entrance">
           <!-- Badge de Status Dinâmico -->
           <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-forest-800/90 border border-gold-500/30 mb-6">
             <span id="hero-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -166,17 +161,17 @@
             <button
               type="button"
               onclick="openReserveModal()"
-              class="inline-flex items-center justify-center gap-2.5 bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-base px-8 py-4 rounded-xl transition-all shadow-xl shadow-gold-500/20 cursor-pointer"
+              class="btn-gold group inline-flex items-center justify-center gap-2.5 font-display font-bold uppercase tracking-wider text-base px-8 py-4 rounded-xl cursor-pointer"
             >
               <span>Garantir Minha Mesa</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
 
             <a
               href="#cardapio"
-              class="inline-flex items-center justify-center gap-2 bg-forest-800/90 hover:bg-forest-700 text-gold-300 border border-gold-500/40 font-display font-semibold uppercase tracking-wider text-base px-8 py-4 rounded-xl transition-all"
+              class="btn-outline inline-flex items-center justify-center gap-2 font-display font-semibold uppercase tracking-wider text-base px-8 py-4 rounded-xl"
             >
               Explorar Cardápio
             </a>
@@ -196,8 +191,8 @@
         </div>
 
         <!-- Coluna Emblema -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-forest-950/90 border-2 border-gold-500/40 p-6 flex flex-col items-center justify-center text-center shadow-2xl shadow-black/60">
+        <div class="lg:col-span-5 flex justify-center hero-entrance-delayed">
+          <div class="emblem-float relative w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-forest-950/90 border-2 border-gold-500/40 p-6 flex flex-col items-center justify-center text-center shadow-2xl shadow-black/60 hover:border-gold-400 transition-colors duration-500">
             <div class="absolute inset-3 rounded-full border border-dashed border-gold-500/30 pointer-events-none"></div>
             <svg viewBox="0 0 120 120" class="w-28 h-28 sm:w-36 sm:h-36 mb-2" aria-hidden="true">
               <path d="M36 33 L43 21 L52 29 L60 17 L68 29 L77 21 L84 33 Z" fill="#D4AF37" />
@@ -218,7 +213,7 @@
   <!-- ================= NOSSA HISTÓRIA ================= -->
   <section id="historia" class="py-20 bg-forest-850 border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-14">
+      <div class="max-w-3xl mx-auto text-center mb-14 reveal-on-scroll">
         <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Nossa Essência</span>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
           Um Sonho de Família Transformado em Casa para Todos
@@ -226,7 +221,7 @@
       </div>
 
       <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7 space-y-5 text-stone-300 leading-relaxed text-base sm:text-lg">
+        <div class="lg:col-span-7 space-y-5 text-stone-300 leading-relaxed text-base sm:text-lg reveal-on-scroll">
           <p>
             O <strong class="text-gold-400">Café Full House Rock Bar</strong> não nasceu apenas de um plano de negócios — nasceu do sonho de um homem de família que sempre acreditou no poder de reunir pessoas em torno de uma boa mesa, uma xícara de café passado na hora e acordes que tocam a alma.
           </p>
@@ -234,7 +229,7 @@
             Durante anos, entre jornadas de trabalho e momentos em família, amadureceu o desejo de abrir as portas de um lugar em Santo André onde ninguém se sentisse apenas um cliente, mas sim um convidado de honra. O nome <strong class="text-gold-300">Full House</strong> carrega esse exato significado: <em>casa cheia de vida, risadas, abraços e histórias compartilhadas</em>.
           </p>
 
-          <blockquote class="my-6 p-6 rounded-2xl bg-forest-900 border-l-4 border-gold-500 shadow-lg">
+          <blockquote class="my-6 p-6 rounded-2xl bg-forest-900 border-l-4 border-gold-500 shadow-lg hover:bg-forest-800/60 transition-colors duration-300">
             <p class="italic text-stone-100 text-base sm:text-lg">
               “Mais do que servir o melhor café, o drink perfeito ou a trilha sonora ideal, nosso maior propósito é que cada pessoa que cruze nossa porta leve consigo uma memória feliz para guardar a vida inteira.”
             </p>
@@ -247,13 +242,13 @@
             <button
               type="button"
               onclick="openReserveModal()"
-              class="bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider px-6 py-3 rounded-xl transition-colors cursor-pointer"
+              class="btn-gold font-display font-bold uppercase tracking-wider px-6 py-3 rounded-xl cursor-pointer"
             >
               Faça Parte Dessa História
             </button>
             <a
               href="#avaliacoes"
-              class="border border-gold-500/40 hover:bg-forest-800 text-gold-300 font-display font-semibold uppercase tracking-wider px-6 py-3 rounded-xl transition-colors"
+              class="btn-outline font-display font-semibold uppercase tracking-wider px-6 py-3 rounded-xl"
             >
               Ver Relatos de Clientes
             </a>
@@ -261,8 +256,8 @@
         </div>
 
         <!-- 3 Pilares -->
-        <div class="lg:col-span-5 grid gap-5">
-          <div class="p-6 rounded-2xl bg-forest-900 border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+        <div class="lg:col-span-5 grid gap-5 reveal-on-scroll">
+          <div class="card-hover p-6 rounded-2xl bg-forest-900 border border-gold-500/20">
             <div class="text-2xl mb-2">🏡</div>
             <h3 class="font-display text-xl font-bold uppercase text-gold-400">Sonho de Família</h3>
             <p class="mt-2 text-sm text-stone-300 leading-relaxed">
@@ -270,7 +265,7 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-forest-900 border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+          <div class="card-hover p-6 rounded-2xl bg-forest-900 border border-gold-500/20">
             <div class="text-2xl mb-2">☕🎸</div>
             <h3 class="font-display text-xl font-bold uppercase text-gold-400">Alma & Hospitalidade</h3>
             <p class="mt-2 text-sm text-stone-300 leading-relaxed">
@@ -278,7 +273,7 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-forest-900 border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+          <div class="card-hover p-6 rounded-2xl bg-forest-900 border border-gold-500/20">
             <div class="text-2xl mb-2">✨</div>
             <h3 class="font-display text-xl font-bold uppercase text-gold-400">Fábrica de Memórias</h3>
             <p class="mt-2 text-sm text-stone-300 leading-relaxed">
@@ -293,7 +288,7 @@
   <!-- ================= CARDÁPIO INTERATIVO ================= -->
   <section id="cardapio" class="py-20 bg-forest-900 border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="text-center max-w-3xl mx-auto mb-10 reveal-on-scroll">
         <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Sabores da Casa</span>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
           Nosso Cardápio
@@ -304,25 +299,25 @@
       </div>
 
       <!-- Abas do Cardápio -->
-      <div class="flex overflow-x-auto no-scrollbar justify-start sm:justify-center gap-3 pb-4 mb-8">
+      <div class="flex overflow-x-auto no-scrollbar justify-start sm:justify-center gap-3 pb-4 mb-8 reveal-on-scroll">
         <button
           type="button"
           data-category="cafes"
-          class="menu-tab active shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border transition-all cursor-pointer"
+          class="menu-tab active shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border cursor-pointer"
         >
           ☕ Cafés & Especiais
         </button>
         <button
           type="button"
           data-category="drinks"
-          class="menu-tab shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border transition-all cursor-pointer"
+          class="menu-tab shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border cursor-pointer"
         >
           🍸 Drinks & Cervejas
         </button>
         <button
           type="button"
           data-category="petiscos"
-          class="menu-tab shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border transition-all cursor-pointer"
+          class="menu-tab shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border cursor-pointer"
         >
           🍔 Petiscos & Burgers
         </button>
@@ -336,7 +331,7 @@
   <!-- ================= AGENDA & SHOWS ================= -->
   <section id="agenda" class="py-20 bg-forest-850 border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
         <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Palco Full House</span>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
           Programação da Semana
@@ -346,9 +341,9 @@
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-6 reveal-on-scroll">
         <!-- Sexta -->
-        <article class="rounded-2xl bg-forest-900 border border-gold-500/25 p-6 flex flex-col justify-between hover:border-gold-400 transition-all">
+        <article class="card-hover rounded-2xl bg-forest-900 border border-gold-500/25 p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 font-display uppercase text-xs font-bold tracking-wider">
@@ -364,14 +359,14 @@
           <button
             type="button"
             onclick="openReserveModal('Sexta-Feira - Classic Rock Night')"
-            class="mt-6 w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+            class="btn-gold mt-6 w-full py-3 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
           >
             Reservar para Sexta
           </button>
         </article>
 
         <!-- Sábado -->
-        <article class="rounded-2xl bg-forest-900 border-2 border-gold-500/50 p-6 flex flex-col justify-between shadow-xl shadow-black/40 relative">
+        <article class="card-hover rounded-2xl bg-forest-900 border-2 border-gold-500/50 p-6 flex flex-col justify-between shadow-xl shadow-black/40 relative">
           <span class="absolute -top-3 right-5 bg-gold-500 text-forest-950 font-display text-[11px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full">
             Noite Principal
           </span>
@@ -390,14 +385,14 @@
           <button
             type="button"
             onclick="openReserveModal('Sábado - Full House Rock Session')"
-            class="mt-6 w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+            class="btn-gold mt-6 w-full py-3 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
           >
             Reservar para Sábado
           </button>
         </article>
 
         <!-- Domingo -->
-        <article class="rounded-2xl bg-forest-900 border border-gold-500/25 p-6 flex flex-col justify-between hover:border-gold-400 transition-all">
+        <article class="card-hover rounded-2xl bg-forest-900 border border-gold-500/25 p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 font-display uppercase text-xs font-bold tracking-wider">
@@ -413,7 +408,7 @@
           <button
             type="button"
             onclick="openReserveModal('Domingo - Acústico & Café Especial')"
-            class="mt-6 w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+            class="btn-gold mt-6 w-full py-3 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
           >
             Reservar para Domingo
           </button>
@@ -425,7 +420,7 @@
   <!-- ================= AVALIAÇÕES DE CLIENTES ================= -->
   <section id="avaliacoes" class="py-20 bg-forest-900 border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
         <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Experiência Real</span>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
           Avaliações de Quem Vive o Bar
@@ -435,7 +430,7 @@
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="grid lg:grid-cols-12 gap-8 items-start reveal-on-scroll">
         <!-- Coluna Esquerda: Resumo + Formulário -->
         <div class="lg:col-span-5 space-y-6">
           <!-- Card Nota Média -->
@@ -457,11 +452,11 @@
             <div>
               <label class="block text-xs uppercase tracking-wider text-stone-300 mb-2">Sua Nota *</label>
               <div id="star-selector" class="flex items-center gap-2" role="radiogroup" aria-label="Nota de 1 a 5 estrelas">
-                <button type="button" data-star="1" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="1 estrela">★</button>
-                <button type="button" data-star="2" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="2 estrelas">★</button>
-                <button type="button" data-star="3" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="3 estrelas">★</button>
-                <button type="button" data-star="4" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="4 estrelas">★</button>
-                <button type="button" data-star="5" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="5 estrelas">★</button>
+                <button type="button" data-star="1" class="star-btn text-3xl text-gold-400 transition-transform duration-200 hover:scale-125 cursor-pointer" aria-label="1 estrela">★</button>
+                <button type="button" data-star="2" class="star-btn text-3xl text-gold-400 transition-transform duration-200 hover:scale-125 cursor-pointer" aria-label="2 estrelas">★</button>
+                <button type="button" data-star="3" class="star-btn text-3xl text-gold-400 transition-transform duration-200 hover:scale-125 cursor-pointer" aria-label="3 estrelas">★</button>
+                <button type="button" data-star="4" class="star-btn text-3xl text-gold-400 transition-transform duration-200 hover:scale-125 cursor-pointer" aria-label="4 estrelas">★</button>
+                <button type="button" data-star="5" class="star-btn text-3xl text-gold-400 transition-transform duration-200 hover:scale-125 cursor-pointer" aria-label="5 estrelas">★</button>
                 <span id="star-label" class="ml-2 text-xs text-gold-300 font-medium">5/5 - Excelente!</span>
               </div>
               <input type="hidden" id="review-rating" value="5" />
@@ -474,7 +469,7 @@
                 id="review-name"
                 required
                 placeholder="Ex: Mariana Costa"
-                class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500 focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500"
               />
             </div>
 
@@ -482,7 +477,7 @@
               <label for="review-category" class="block text-xs uppercase tracking-wider text-stone-300 mb-1.5">O que mais curtiu?</label>
               <select
                 id="review-category"
-                class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white"
               >
                 <option value="Cafés & Drinks">Cafés & Drinks</option>
                 <option value="Shows & Ambiente">Shows & Ambiente</option>
@@ -497,7 +492,7 @@
                 rows="3"
                 required
                 placeholder="Conte como foi sua experiência no bar..."
-                class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500 focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500"
               ></textarea>
             </div>
 
@@ -505,13 +500,13 @@
               <input type="checkbox" id="review-lgpd" required class="mt-0.5 accent-gold-500" />
               <span>
                 Concordo com a publicação do meu nome e comentário conforme a
-                <button type="button" onclick="openLgpdModal()" class="text-gold-400 underline">Política de Privacidade (LGPD)</button>.
+                <button type="button" onclick="openLgpdModal()" class="text-gold-400 hover:text-gold-300 underline transition-colors">Política de Privacidade (LGPD)</button>.
               </span>
             </label>
 
             <button
               type="submit"
-              class="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+              class="btn-gold w-full py-3.5 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
             >
               Publicar Avaliação
             </button>
@@ -544,14 +539,14 @@
   <!-- ================= HORÁRIOS & LOCALIZAÇÃO ================= -->
   <section id="localizacao" class="py-20 bg-forest-850 border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
         <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Venha Nos Visitar</span>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
           Horários & Localização
         </h2>
       </div>
 
-      <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      <div class="grid lg:grid-cols-12 gap-8 items-stretch reveal-on-scroll">
         <!-- Horários -->
         <div class="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-forest-900 border border-gold-500/25 flex flex-col justify-between">
           <div>
@@ -603,7 +598,7 @@
               <button
                 type="button"
                 onclick="copyAddress()"
-                class="px-4 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 border border-gold-500/30 text-gold-300 text-xs font-display uppercase tracking-wider font-bold transition-colors cursor-pointer"
+                class="btn-outline px-4 py-2.5 rounded-xl text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
               >
                 📋 Copiar Endereço
               </button>
@@ -611,7 +606,7 @@
                 href="https://www.google.com/maps/search/?api=1&query=R.+Sen.+Flaquer,+684+-+Centro,+Santo+André+-+SP"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 text-xs font-display uppercase tracking-wider font-bold transition-colors"
+                class="btn-gold px-4 py-2.5 rounded-xl text-xs font-display uppercase tracking-wider font-bold"
               >
                 Abrir no Google Maps
               </a>
@@ -620,7 +615,7 @@
         </div>
 
         <!-- Mapa Incorporado -->
-        <div class="lg:col-span-7 rounded-2xl overflow-hidden border border-gold-500/25 min-h-[340px] bg-forest-900">
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden border border-gold-500/25 min-h-[340px] bg-forest-900 hover:border-gold-400/50 transition-colors duration-300">
           <iframe
             title="Mapa do Café Full House Rock Bar em Santo André"
             src="https://www.google.com/maps?q=R.+Sen.+Flaquer,+684+-+Centro,+Santo+Andr%C3%A9+-+SP&output=embed"
@@ -649,11 +644,11 @@
         <div>
           <h4 class="font-display text-sm font-bold uppercase tracking-widest text-gold-400 mb-3">Navegação</h4>
           <ul class="space-y-2 text-sm text-stone-300">
-            <li><a href="#historia" class="hover:text-gold-400 transition-colors">Nossa História</a></li>
-            <li><a href="#cardapio" class="hover:text-gold-400 transition-colors">Cardápio</a></li>
-            <li><a href="#agenda" class="hover:text-gold-400 transition-colors">Agenda & Shows</a></li>
-            <li><a href="#avaliacoes" class="hover:text-gold-400 transition-colors">Avaliações</a></li>
-            <li><a href="#localizacao" class="hover:text-gold-400 transition-colors">Localização</a></li>
+            <li><a href="#historia" class="hover:text-gold-400 hover:translate-x-1 inline-block transition-all duration-200">Nossa História</a></li>
+            <li><a href="#cardapio" class="hover:text-gold-400 hover:translate-x-1 inline-block transition-all duration-200">Cardápio</a></li>
+            <li><a href="#agenda" class="hover:text-gold-400 hover:translate-x-1 inline-block transition-all duration-200">Agenda & Shows</a></li>
+            <li><a href="#avaliacoes" class="hover:text-gold-400 hover:translate-x-1 inline-block transition-all duration-200">Avaliações</a></li>
+            <li><a href="#localizacao" class="hover:text-gold-400 hover:translate-x-1 inline-block transition-all duration-200">Localização</a></li>
           </ul>
         </div>
 
@@ -661,17 +656,17 @@
           <h4 class="font-display text-sm font-bold uppercase tracking-widest text-gold-400 mb-3">Contato & Privacidade (LGPD)</h4>
           <ul class="space-y-2 text-sm text-stone-300">
             <li>
-              <a href="https://wa.me/5511968288545" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors">
+              <a href="https://wa.me/5511968288545" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors duration-200">
                 WhatsApp Reservas: (11) 96828-8545
               </a>
             </li>
             <li>
-              <button type="button" onclick="openLgpdModal()" class="hover:text-gold-400 transition-colors text-left cursor-pointer">
+              <button type="button" onclick="openLgpdModal()" class="hover:text-gold-400 transition-colors duration-200 text-left cursor-pointer">
                 Política de Privacidade & Termos (LGPD)
               </button>
             </li>
             <li>
-              <button type="button" onclick="openCookieModal()" class="hover:text-gold-400 transition-colors text-left cursor-pointer">
+              <button type="button" onclick="openCookieModal()" class="hover:text-gold-400 transition-colors duration-200 text-left cursor-pointer">
                 Gerenciar Preferências de Cookies
               </button>
             </li>
@@ -687,13 +682,13 @@
   </footer>
 
   <!-- ================= MODAL DE RESERVAS (WHATSAPP) ================= -->
-  <div id="reserve-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-    <div class="bg-forest-900 border border-gold-500/40 rounded-2xl max-w-lg w-full max-h-[90dvh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+  <div id="reserve-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="modal-panel bg-forest-900 border border-gold-500/40 rounded-2xl max-w-lg w-full max-h-[90dvh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
       <button
         type="button"
         onclick="closeReserveModal()"
         aria-label="Fechar janela de reserva"
-        class="absolute top-4 right-4 w-10 h-10 rounded-full bg-forest-800 hover:bg-forest-700 text-stone-300 hover:text-white flex items-center justify-center cursor-pointer"
+        class="absolute top-4 right-4 w-10 h-10 rounded-full bg-forest-800 hover:bg-gold-500 text-stone-300 hover:text-forest-950 flex items-center justify-center transition-colors duration-200 cursor-pointer"
       >
         ✕
       </button>
@@ -714,7 +709,7 @@
               id="res-name"
               required
               placeholder="Seu nome completo"
-              class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              class="input-field w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white"
             />
           </div>
 
@@ -727,7 +722,7 @@
                 inputmode="tel"
                 required
                 placeholder="(11) 99999-9999"
-                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white"
               />
             </div>
 
@@ -735,7 +730,7 @@
               <label for="res-guests" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Qtd. de Pessoas *</label>
               <select
                 id="res-guests"
-                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white"
               >
                 <option value="2 pessoas">2 pessoas</option>
                 <option value="3 pessoas">3 pessoas</option>
@@ -751,7 +746,7 @@
               <label for="res-event" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Dia / Programação *</label>
               <select
                 id="res-event"
-                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white"
               >
                 <option value="Quarta-Feira - Happy Hour & Café">Quarta-Feira</option>
                 <option value="Quinta-Feira - Rock & Drinks">Quinta-Feira</option>
@@ -768,7 +763,7 @@
                 id="res-time"
                 value="20:00"
                 required
-                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+                class="input-field w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white"
               />
             </div>
           </div>
@@ -779,7 +774,7 @@
               type="text"
               id="res-notes"
               placeholder="Ex: Aniversário, mesa próxima ao palco..."
-              class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              class="input-field w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white"
             />
           </div>
 
@@ -787,13 +782,13 @@
             <input type="checkbox" id="res-lgpd" required class="mt-0.5 accent-gold-500" />
             <span>
               Autorizo o uso dos meus dados exclusivamente para atendimento da reserva via WhatsApp, conforme a
-              <button type="button" onclick="openLgpdModal()" class="text-gold-400 underline">Política de Privacidade (LGPD)</button>.
+              <button type="button" onclick="openLgpdModal()" class="text-gold-400 hover:text-gold-300 underline transition-colors">Política de Privacidade (LGPD)</button>.
             </span>
           </label>
 
           <button
             type="submit"
-            class="w-full py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-base transition-colors cursor-pointer"
+            class="btn-gold w-full py-4 rounded-xl font-display font-bold uppercase tracking-wider text-base cursor-pointer"
           >
             Confirmar & Enviar no WhatsApp
           </button>
@@ -817,21 +812,21 @@
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors"
+            class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-all duration-300"
           >
             Abrir WhatsApp Agora
           </a>
           <button
             type="button"
             onclick="copyReservationSummary()"
-            class="w-full py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-gold-300 border border-gold-500/30 font-display uppercase tracking-wider text-xs font-bold cursor-pointer"
+            class="btn-outline w-full py-3 rounded-xl font-display uppercase tracking-wider text-xs font-bold cursor-pointer"
           >
             Copiar Comprovante da Reserva
           </button>
           <button
             type="button"
             onclick="resetReserveModal()"
-            class="text-xs text-stone-400 hover:text-white underline pt-1 cursor-pointer"
+            class="text-xs text-stone-400 hover:text-white underline pt-1 transition-colors cursor-pointer"
           >
             Fazer outra reserva
           </button>
@@ -841,32 +836,32 @@
   </div>
 
   <!-- ================= BANNER DE COOKIES (LGPD) ================= -->
-  <div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-50 hidden bg-forest-950/95 backdrop-blur-md border-t border-gold-500/40 p-4 sm:p-6 shadow-2xl">
+  <div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-50 hidden bg-forest-950/95 backdrop-blur-md border-t border-gold-500/40 p-4 sm:p-6 shadow-2xl animate-slide-up">
     <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
       <div class="text-xs sm:text-sm text-stone-300 max-w-3xl">
         <strong class="text-gold-400 font-display uppercase tracking-wider block mb-1">Privacidade & Cookies (LGPD)</strong>
         Utilizamos cookies essenciais para o funcionamento do site e cookies opcionais para melhorar sua experiência de navegação, conforme a Lei nº 13.709/2018. Consulte nossa
-        <button type="button" onclick="openLgpdModal()" class="text-gold-400 underline">Política de Privacidade</button>.
+        <button type="button" onclick="openLgpdModal()" class="text-gold-400 hover:text-gold-300 underline transition-colors">Política de Privacidade</button>.
       </div>
       <div class="flex flex-wrap items-center gap-2.5 shrink-0 w-full sm:w-auto">
         <button
           type="button"
           onclick="openCookieModal()"
-          class="px-4 py-2.5 rounded-lg border border-gold-500/40 text-gold-300 hover:bg-forest-800 text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
+          class="btn-outline px-4 py-2.5 rounded-lg text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
         >
           Personalizar
         </button>
         <button
           type="button"
           onclick="saveCookiePreferences(false, false)"
-          class="px-4 py-2.5 rounded-lg bg-forest-800 hover:bg-forest-700 text-stone-200 text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
+          class="px-4 py-2.5 rounded-lg bg-forest-800 hover:bg-forest-700 text-stone-200 hover:text-white text-xs font-display uppercase tracking-wider font-bold transition-colors duration-200 cursor-pointer"
         >
           Rejeitar Não Essenciais
         </button>
         <button
           type="button"
           onclick="saveCookiePreferences(true, true)"
-          class="px-5 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-forest-950 text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
+          class="btn-gold px-5 py-2.5 rounded-lg text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
         >
           Aceitar Todos
         </button>
@@ -875,11 +870,11 @@
   </div>
 
   <!-- ================= MODAL PREFERÊNCIAS DE COOKIES ================= -->
-  <div id="cookie-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-    <div class="bg-forest-900 border border-gold-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl">
+  <div id="cookie-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="modal-panel bg-forest-900 border border-gold-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl">
       <div class="flex items-center justify-between pb-4 border-b border-gold-500/20">
         <h3 class="font-display text-2xl font-bold uppercase text-gold-400">Preferências de Cookies</h3>
-        <button type="button" onclick="closeCookieModal()" class="text-stone-400 hover:text-white text-xl cursor-pointer">✕</button>
+        <button type="button" onclick="closeCookieModal()" class="text-stone-400 hover:text-white text-xl transition-colors cursor-pointer">✕</button>
       </div>
 
       <div class="mt-5 space-y-4 text-sm">
@@ -891,7 +886,7 @@
           <span class="text-xs font-bold uppercase text-gold-400 shrink-0">Sempre Ativo</span>
         </div>
 
-        <label class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 flex items-center justify-between gap-4 cursor-pointer">
+        <label class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 hover:border-gold-500/40 transition-colors flex items-center justify-between gap-4 cursor-pointer">
           <div>
             <strong class="text-white block">Cookies Analíticos & Desempenho</strong>
             <span class="text-xs text-stone-400">Ajudam a entender quais páginas e horários são mais acessados.</span>
@@ -899,7 +894,7 @@
           <input type="checkbox" id="cookie-analytics" class="w-5 h-5 accent-gold-500" />
         </label>
 
-        <label class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 flex items-center justify-between gap-4 cursor-pointer">
+        <label class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 hover:border-gold-500/40 transition-colors flex items-center justify-between gap-4 cursor-pointer">
           <div>
             <strong class="text-white block">Cookies de Marketing & Eventos</strong>
             <span class="text-xs text-stone-400">Permitem divulgar shows especiais e promoções do Café Full House.</span>
@@ -912,7 +907,7 @@
         <button
           type="button"
           onclick="saveCustomCookies()"
-          class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
+          class="btn-gold w-full py-3 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
         >
           Salvar Minhas Preferências
         </button>
@@ -921,11 +916,11 @@
   </div>
 
   <!-- ================= MODAL POLÍTICA DE PRIVACIDADE (LGPD) ================= -->
-  <div id="lgpd-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-    <div class="bg-forest-900 border border-gold-500/40 rounded-2xl max-w-2xl w-full max-h-[85dvh] overflow-y-auto p-6 sm:p-8 shadow-2xl">
+  <div id="lgpd-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="modal-panel bg-forest-900 border border-gold-500/40 rounded-2xl max-w-2xl w-full max-h-[85dvh] overflow-y-auto p-6 sm:p-8 shadow-2xl">
       <div class="flex items-center justify-between pb-4 border-b border-gold-500/20">
         <h3 class="font-display text-2xl font-bold uppercase text-gold-400">Política de Privacidade & LGPD</h3>
-        <button type="button" onclick="closeLgpdModal()" class="text-stone-400 hover:text-white text-xl cursor-pointer">✕</button>
+        <button type="button" onclick="closeLgpdModal()" class="text-stone-400 hover:text-white text-xl transition-colors cursor-pointer">✕</button>
       </div>
 
       <div class="mt-5 space-y-4 text-sm text-stone-300 leading-relaxed">
@@ -947,7 +942,7 @@
         <button
           type="button"
           onclick="closeLgpdModal()"
-          class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
+          class="btn-gold w-full py-3 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
         >
           Entendi e Fechar
         </button>

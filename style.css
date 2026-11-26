@@ -1,4 +1,8 @@
 /* ================= RESET & BASE RESPONSIVA ================= */
+:root {
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -39,16 +43,119 @@ textarea {
   scrollbar-width: none;
 }
 
-/* Estilo das Abas do Cardápio */
+/* ================= BOTÕES & LINKS COM HOVER MINIMALISTA ================= */
+.btn-gold {
+  background-color: #d4af37;
+  color: #050c08;
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.18);
+  transition:
+    background-color 0.28s var(--ease-smooth),
+    color 0.28s var(--ease-smooth),
+    transform 0.28s var(--ease-smooth),
+    box-shadow 0.28s var(--ease-smooth);
+}
+
+.btn-gold:hover {
+  background-color: #f3dc8b;
+  color: #050c08;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(212, 175, 55, 0.32);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background-color: rgba(17, 36, 25, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #f3dc8b;
+  transition:
+    background-color 0.28s var(--ease-smooth),
+    border-color 0.28s var(--ease-smooth),
+    color 0.28s var(--ease-smooth),
+    transform 0.28s var(--ease-smooth);
+}
+
+.btn-outline:hover {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #050c08;
+  transform: translateY(-2px);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+}
+
+/* Sublinhado animado nos links de navegação */
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s var(--ease-smooth);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #d4af37;
+  transition: width 0.3s var(--ease-smooth);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Campos de formulário com foco suave */
+.input-field {
+  transition:
+    border-color 0.25s var(--ease-smooth),
+    box-shadow 0.25s var(--ease-smooth),
+    background-color 0.25s var(--ease-smooth);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #e5c158;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16);
+}
+
+/* ================= CARDS & ABAS DO CARDÁPIO ================= */
+.card-hover {
+  transition:
+    transform 0.35s var(--ease-smooth),
+    border-color 0.35s var(--ease-smooth),
+    box-shadow 0.35s var(--ease-smooth),
+    background-color 0.35s var(--ease-smooth);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
 .menu-tab {
   background-color: #0b1911;
   border-color: rgba(212, 175, 55, 0.25);
   color: #e7e5e4;
+  transition:
+    background-color 0.28s var(--ease-smooth),
+    border-color 0.28s var(--ease-smooth),
+    color 0.28s var(--ease-smooth),
+    transform 0.28s var(--ease-smooth),
+    box-shadow 0.28s var(--ease-smooth);
 }
 
 .menu-tab:hover {
-  border-color: rgba(212, 175, 55, 0.6);
-  color: #e5c158;
+  background-color: #112419;
+  border-color: rgba(212, 175, 55, 0.65);
+  color: #f3dc8b;
+  transform: translateY(-2px);
 }
 
 .menu-tab.active {
@@ -58,22 +165,157 @@ textarea {
   box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
 }
 
-/* Estilo dos Filtros de Avaliações */
+/* Animação de entrada em cascata dos itens do cardápio */
+@keyframes menuCardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menu-item-animate {
+  opacity: 0;
+  animation: menuCardFadeUp 0.45s var(--ease-smooth) forwards;
+}
+
+/* Filtros de Avaliações */
 .review-filter {
   background-color: #0b1911;
   border-color: rgba(212, 175, 55, 0.25);
   color: #d6d3d1;
+  transition:
+    background-color 0.25s var(--ease-smooth),
+    border-color 0.25s var(--ease-smooth),
+    color 0.25s var(--ease-smooth),
+    transform 0.25s var(--ease-smooth);
 }
 
 .review-filter:hover {
+  background-color: #112419;
   border-color: #d4af37;
-  color: #e5c158;
+  color: #f3dc8b;
+  transform: translateY(-1px);
 }
 
 .review-filter.active {
   background-color: #d4af37;
   border-color: #d4af37;
   color: #050c08;
+}
+
+/* ================= ANIMAÇÕES DE HERO, SCROLL E MODAIS ================= */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-entrance {
+  animation: fadeSlideUp 0.8s var(--ease-smooth) both;
+}
+
+.hero-entrance-delayed {
+  animation: fadeSlideUp 0.9s var(--ease-smooth) 0.15s both;
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.emblem-float {
+  animation: gentleFloat 5.5s ease-in-out infinite;
+}
+
+/* Revelação ao rolar a página */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease-smooth),
+    transform 0.7s var(--ease-smooth);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animação de abertura dos Modais */
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-backdrop.flex .modal-panel {
+  animation: modalPopIn 0.32s var(--ease-smooth) forwards;
+}
+
+@keyframes slideDownMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDownMenu 0.25s var(--ease-smooth) forwards;
+}
+
+@keyframes slideUpBanner {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpBanner 0.45s var(--ease-smooth) forwards;
+}
+
+/* Acessibilidade: respeita preferência de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll,
+  .menu-item-animate {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Scrollbar personalizada */
