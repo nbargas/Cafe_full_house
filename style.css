@@ -1,0 +1,95 @@
+/* ================= RESET & BASE RESPONSIVA ================= */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Evita zoom automático no iOS Safari em inputs */
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}
+
+/* Tipografia Fluida do Hero */
+.hero-title {
+  font-size: clamp(2.1rem, 5vw, 4.1rem);
+}
+
+/* Fundo do Hero com textura escura e brilho dourado */
+.hero-bg {
+  background-color: #08130d;
+  background-image:
+    radial-gradient(circle at 20% 25%, rgba(212, 175, 55, 0.14), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(26, 54, 38, 0.45), transparent 50%),
+    linear-gradient(135deg, #050c08 0%, #0b1911 50%, #08130d 100%);
+}
+
+/* Esconde barra de rolagem horizontal mantendo swipe touch */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Estilo das Abas do Cardápio */
+.menu-tab {
+  background-color: #0b1911;
+  border-color: rgba(212, 175, 55, 0.25);
+  color: #e7e5e4;
+}
+
+.menu-tab:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  color: #e5c158;
+}
+
+.menu-tab.active {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #050c08;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+}
+
+/* Estilo dos Filtros de Avaliações */
+.review-filter {
+  background-color: #0b1911;
+  border-color: rgba(212, 175, 55, 0.25);
+  color: #d6d3d1;
+}
+
+.review-filter:hover {
+  border-color: #d4af37;
+  color: #e5c158;
+}
+
+.review-filter.active {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #050c08;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050c08;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a3626;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}

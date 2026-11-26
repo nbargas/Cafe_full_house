@@ -1,51 +1,964 @@
-<!-- Iniciado Projeto -->
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Bem-vindo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Café Full House Rock Bar | Santo André - SP</title>
+  <meta name="description" content="Café Full House Rock Bar em Santo André. Cafés especiais, drinks autorais, porções artesanais, rock ao vivo e reservas diretas pelo WhatsApp." />
 
-    <style>
-        body {
-            background-color: #198754;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
-            padding-top: 150px;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
 
-        h1 {
-            font-size: 40px;
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              950: '#050C08',
+              900: '#08130D',
+              850: '#0B1911',
+              800: '#112419',
+              700: '#1A3626',
+            },
+            gold: {
+              300: '#F3DC8B',
+              400: '#E5C158',
+              500: '#D4AF37',
+              600: '#B59124',
+              700: '#8E6F16',
+            }
+          },
+          fontFamily: {
+            display: ['Oswald', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
         }
+      }
+    };
+  </script>
 
-        p {
-            font-size: 18px;
-        }
-
-        button {
-            background-color: white;
-            color: #198754;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #ddd;
-        }
-    </style>
+  <!-- CSS Personalizado -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="bg-forest-900 text-stone-100 font-sans antialiased selection:bg-gold-500 selection:text-forest-950">
 
-<body>
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-300 bg-forest-950/90 backdrop-blur-md border-b border-gold-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-12 h-12 shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" fill="#08130D" stroke="#D4AF37" stroke-width="3" />
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#D4AF37" stroke-width="1" stroke-dasharray="3 3" opacity="0.6" />
+              <!-- Coroa Full House -->
+              <path d="M36 33 L43 21 L52 29 L60 17 L68 29 L77 21 L84 33 Z" fill="#D4AF37" />
+              <!-- Xícara -->
+              <path d="M34 45 H82 V65 C82 78 72 87 58 87 C44 87 34 78 34 65 Z" fill="#112419" stroke="#D4AF37" stroke-width="2.5" />
+              <!-- Alça -->
+              <path d="M82 50 H90 C95 50 98 54 98 59 C98 64 95 68 90 68 H82" fill="none" stroke="#D4AF37" stroke-width="2.5" />
+              <!-- Naipe de Espadas -->
+              <path d="M58 51 C58 51 47 60 47 66 C47 70 50 72 53 72 C55 72 57 71 58 69 C59 71 61 72 63 72 C66 72 69 70 69 66 C69 60 58 51 58 51 Z" fill="#D4AF37" />
+              <path d="M56 69 L54 77 H62 L60 69 Z" fill="#D4AF37" />
+              <!-- Pires -->
+              <path d="M28 91 H88" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div>
+            <span class="block font-display text-xl sm:text-2xl font-bold tracking-wider text-gold-400 leading-none uppercase">
+              Café Full House
+            </span>
+            <span class="block text-[11px] tracking-[0.22em] text-stone-300 uppercase mt-1">
+              Rock Bar • Santo André
+            </span>
+          </div>
+        </a>
 
-    <h1>Bem-vindo!</h1>
-    <p>É muito bom ter você aqui.</p>
+        <!-- Menu Desktop -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <a href="#historia" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Nossa História</a>
+          <a href="#cardapio" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Cardápio</a>
+          <a href="#agenda" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Agenda</a>
+          <a href="#avaliacoes" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Avaliações</a>
+          <a href="#localizacao" class="nav-link text-stone-200 hover:text-gold-400 transition-colors">Localização</a>
+        </nav>
 
-    <button onclick="alert('Seja bem-vindo!')">
-        Começar
-    </button>
+        <!-- Botão Reserva + Menu Mobile -->
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            onclick="openReserveModal()"
+            class="hidden sm:inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-gold-500/20 cursor-pointer"
+          >
+            <span>Reservar Mesa</span>
+          </button>
 
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gold-500/30 text-gold-400 hover:bg-forest-800 transition-colors"
+          >
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Mobile / Tablet -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-forest-950 border-t border-gold-500/20 px-4 pt-4 pb-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <a href="#historia" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Nossa História</a>
+        <a href="#cardapio" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Cardápio</a>
+        <a href="#agenda" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Programação & Shows</a>
+        <a href="#avaliacoes" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Avaliações</a>
+        <a href="#localizacao" class="mobile-nav-link px-4 py-3 rounded-lg text-stone-200 hover:bg-forest-800 hover:text-gold-400 font-medium">Horários & Localização</a>
+        <button
+          type="button"
+          onclick="openReserveModal(); closeMobileMenu();"
+          class="sm:col-span-2 mt-2 w-full bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider py-3.5 rounded-lg transition-colors"
+        >
+          Reservar Mesa pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="inicio" class="relative min-h-[92vh] flex items-center pt-28 pb-16 overflow-hidden hero-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-forest-950/85 via-forest-900/80 to-forest-900"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <!-- Coluna Texto -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <!-- Badge de Status Dinâmico -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-forest-800/90 border border-gold-500/30 mb-6">
+            <span id="hero-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="hero-status-text" class="text-xs sm:text-sm font-medium text-stone-200">
+              Verificando horário de funcionamento...
+            </span>
+          </div>
+
+          <h1 class="hero-title font-display font-bold uppercase text-white tracking-tight leading-[1.05]">
+            Onde o Aroma do Café Encontra a Alma do
+            <span class="text-gold-400 block sm:inline">Rock & Roll</span>
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg text-stone-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            No coração de Santo André, o <strong class="text-gold-300 font-semibold">Café Full House Rock Bar</strong> reúne cafés especiais, drinks autorais, gastronomia artesanal e música ao vivo em um ambiente feito para criar memórias inesquecíveis.
+          </p>
+
+          <!-- Botões de Ação -->
+          <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4">
+            <button
+              type="button"
+              onclick="openReserveModal()"
+              class="inline-flex items-center justify-center gap-2.5 bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-base px-8 py-4 rounded-xl transition-all shadow-xl shadow-gold-500/20 cursor-pointer"
+            >
+              <span>Garantir Minha Mesa</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </button>
+
+            <a
+              href="#cardapio"
+              class="inline-flex items-center justify-center gap-2 bg-forest-800/90 hover:bg-forest-700 text-gold-300 border border-gold-500/40 font-display font-semibold uppercase tracking-wider text-base px-8 py-4 rounded-xl transition-all"
+            >
+              Explorar Cardápio
+            </a>
+          </div>
+
+          <!-- Info Rápida -->
+          <div class="mt-10 pt-6 border-t border-gold-500/20 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-8 text-sm text-stone-300">
+            <div class="flex items-center gap-2">
+              <span class="text-gold-400">📍</span>
+              <span>R. Sen. Flaquer, 684 - Centro, Santo André</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-gold-400">🎸</span>
+              <span>Shows & Acústicos todo fim de semana</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna Emblema -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-forest-950/90 border-2 border-gold-500/40 p-6 flex flex-col items-center justify-center text-center shadow-2xl shadow-black/60">
+            <div class="absolute inset-3 rounded-full border border-dashed border-gold-500/30 pointer-events-none"></div>
+            <svg viewBox="0 0 120 120" class="w-28 h-28 sm:w-36 sm:h-36 mb-2" aria-hidden="true">
+              <path d="M36 33 L43 21 L52 29 L60 17 L68 29 L77 21 L84 33 Z" fill="#D4AF37" />
+              <path d="M34 45 H82 V65 C82 78 72 87 58 87 C44 87 34 78 34 65 Z" fill="#112419" stroke="#D4AF37" stroke-width="2.5" />
+              <path d="M82 50 H90 C95 50 98 54 98 59 C98 64 95 68 90 68 H82" fill="none" stroke="#D4AF37" stroke-width="2.5" />
+              <path d="M58 51 C58 51 47 60 47 66 C47 70 50 72 53 72 C55 72 57 71 58 69 C59 71 61 72 63 72 C66 72 69 70 69 66 C69 60 58 51 58 51 Z" fill="#D4AF37" />
+              <path d="M56 69 L54 77 H62 L60 69 Z" fill="#D4AF37" />
+              <path d="M28 91 H88" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <span class="font-display text-xl sm:text-2xl font-bold tracking-widest text-gold-400 uppercase">Full House</span>
+            <span class="text-xs tracking-[0.25em] text-stone-300 uppercase mt-1">Café • Drinks • Rock</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NOSSA HISTÓRIA ================= -->
+  <section id="historia" class="py-20 bg-forest-850 border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Nossa Essência</span>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
+          Um Sonho de Família Transformado em Casa para Todos
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-5 text-stone-300 leading-relaxed text-base sm:text-lg">
+          <p>
+            O <strong class="text-gold-400">Café Full House Rock Bar</strong> não nasceu apenas de um plano de negócios — nasceu do sonho de um homem de família que sempre acreditou no poder de reunir pessoas em torno de uma boa mesa, uma xícara de café passado na hora e acordes que tocam a alma.
+          </p>
+          <p>
+            Durante anos, entre jornadas de trabalho e momentos em família, amadureceu o desejo de abrir as portas de um lugar em Santo André onde ninguém se sentisse apenas um cliente, mas sim um convidado de honra. O nome <strong class="text-gold-300">Full House</strong> carrega esse exato significado: <em>casa cheia de vida, risadas, abraços e histórias compartilhadas</em>.
+          </p>
+
+          <blockquote class="my-6 p-6 rounded-2xl bg-forest-900 border-l-4 border-gold-500 shadow-lg">
+            <p class="italic text-stone-100 text-base sm:text-lg">
+              “Mais do que servir o melhor café, o drink perfeito ou a trilha sonora ideal, nosso maior propósito é que cada pessoa que cruze nossa porta leve consigo uma memória feliz para guardar a vida inteira.”
+            </p>
+            <footer class="mt-3 text-sm font-display uppercase tracking-wider text-gold-400">
+              — Fundador do Café Full House Rock Bar
+            </footer>
+          </blockquote>
+
+          <div class="pt-2 flex flex-wrap gap-4">
+            <button
+              type="button"
+              onclick="openReserveModal()"
+              class="bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider px-6 py-3 rounded-xl transition-colors cursor-pointer"
+            >
+              Faça Parte Dessa História
+            </button>
+            <a
+              href="#avaliacoes"
+              class="border border-gold-500/40 hover:bg-forest-800 text-gold-300 font-display font-semibold uppercase tracking-wider px-6 py-3 rounded-xl transition-colors"
+            >
+              Ver Relatos de Clientes
+            </a>
+          </div>
+        </div>
+
+        <!-- 3 Pilares -->
+        <div class="lg:col-span-5 grid gap-5">
+          <div class="p-6 rounded-2xl bg-forest-900 border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+            <div class="text-2xl mb-2">🏡</div>
+            <h3 class="font-display text-xl font-bold uppercase text-gold-400">Sonho de Família</h3>
+            <p class="mt-2 text-sm text-stone-300 leading-relaxed">
+              Construído com dedicação, valores sólidos e hospitalidade genuína para acolher amigos, casais e famílias inteiras.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-forest-900 border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+            <div class="text-2xl mb-2">☕🎸</div>
+            <h3 class="font-display text-xl font-bold uppercase text-gold-400">Alma & Hospitalidade</h3>
+            <p class="mt-2 text-sm text-stone-300 leading-relaxed">
+              Da seleção dos grãos especiais à curadoria musical de rock clássico e acústico, cada detalhe é pensado com carinho.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-forest-900 border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+            <div class="text-2xl mb-2">✨</div>
+            <h3 class="font-display text-xl font-bold uppercase text-gold-400">Fábrica de Memórias</h3>
+            <p class="mt-2 text-sm text-stone-300 leading-relaxed">
+              Aniversários, reencontros ou aquela pausa merecida no fim do dia: celebramos cada momento ao seu lado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CARDÁPIO INTERATIVO ================= -->
+  <section id="cardapio" class="py-20 bg-forest-900 border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Sabores da Casa</span>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
+          Nosso Cardápio
+        </h2>
+        <p class="mt-3 text-stone-300">
+          Do espresso encorpado aos drinks autorais e porções artesanais preparados na hora.
+        </p>
+      </div>
+
+      <!-- Abas do Cardápio -->
+      <div class="flex overflow-x-auto no-scrollbar justify-start sm:justify-center gap-3 pb-4 mb-8">
+        <button
+          type="button"
+          data-category="cafes"
+          class="menu-tab active shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border transition-all cursor-pointer"
+        >
+          ☕ Cafés & Especiais
+        </button>
+        <button
+          type="button"
+          data-category="drinks"
+          class="menu-tab shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border transition-all cursor-pointer"
+        >
+          🍸 Drinks & Cervejas
+        </button>
+        <button
+          type="button"
+          data-category="petiscos"
+          class="menu-tab shrink-0 px-6 py-3 rounded-xl font-display uppercase tracking-wider text-sm font-bold border transition-all cursor-pointer"
+        >
+          🍔 Petiscos & Burgers
+        </button>
+      </div>
+
+      <!-- Grid Dinâmico de Itens -->
+      <div id="menu-items-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- ================= AGENDA & SHOWS ================= -->
+  <section id="agenda" class="py-20 bg-forest-850 border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Palco Full House</span>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
+          Programação da Semana
+        </h2>
+        <p class="mt-3 text-stone-300">
+          Escolha sua noite favorita e garanta sua mesa antecipadamente pelo WhatsApp.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Sexta -->
+        <article class="rounded-2xl bg-forest-900 border border-gold-500/25 p-6 flex flex-col justify-between hover:border-gold-400 transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 font-display uppercase text-xs font-bold tracking-wider">
+                Sexta-Feira • 21h
+              </span>
+              <span class="text-xs text-stone-400">Casa aberta 18h–01h</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold uppercase text-white">Classic Rock Night</h3>
+            <p class="mt-2 text-sm text-stone-300 leading-relaxed">
+              Os maiores hinos do rock internacional dos anos 70, 80 e 90 ao vivo com banda completa e chopp gelado.
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="openReserveModal('Sexta-Feira - Classic Rock Night')"
+            class="mt-6 w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+          >
+            Reservar para Sexta
+          </button>
+        </article>
+
+        <!-- Sábado -->
+        <article class="rounded-2xl bg-forest-900 border-2 border-gold-500/50 p-6 flex flex-col justify-between shadow-xl shadow-black/40 relative">
+          <span class="absolute -top-3 right-5 bg-gold-500 text-forest-950 font-display text-[11px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full">
+            Noite Principal
+          </span>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 font-display uppercase text-xs font-bold tracking-wider">
+                Sábado • 21h30
+              </span>
+              <span class="text-xs text-stone-400">Casa aberta 16h–01h</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold uppercase text-white">Full House Rock Session</h3>
+            <p class="mt-2 text-sm text-stone-300 leading-relaxed">
+              Especial Rock Nacional & Internacional com energia lá em cima, drinks exclusivos e cardápio completo.
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="openReserveModal('Sábado - Full House Rock Session')"
+            class="mt-6 w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+          >
+            Reservar para Sábado
+          </button>
+        </article>
+
+        <!-- Domingo -->
+        <article class="rounded-2xl bg-forest-900 border border-gold-500/25 p-6 flex flex-col justify-between hover:border-gold-400 transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 font-display uppercase text-xs font-bold tracking-wider">
+                Domingo • 18h30
+              </span>
+              <span class="text-xs text-stone-400">Casa aberta 16h–00h</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold uppercase text-white">Acústico & Café Especial</h3>
+            <p class="mt-2 text-sm text-stone-300 leading-relaxed">
+              Fim de tarde acolhedor com voz e violão, blues, rock acústico e harmonização de cafés e sobremesas.
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="openReserveModal('Domingo - Acústico & Café Especial')"
+            class="mt-6 w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+          >
+            Reservar para Domingo
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AVALIAÇÕES DE CLIENTES ================= -->
+  <section id="avaliacoes" class="py-20 bg-forest-900 border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Experiência Real</span>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
+          Avaliações de Quem Vive o Bar
+        </h2>
+        <p class="mt-3 text-stone-300">
+          Sua opinião ajuda a manter nossa casa cada vez melhor. Deixe sua avaliação abaixo!
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Coluna Esquerda: Resumo + Formulário -->
+        <div class="lg:col-span-5 space-y-6">
+          <!-- Card Nota Média -->
+          <div class="p-6 rounded-2xl bg-forest-850 border border-gold-500/25">
+            <div class="flex items-center gap-5">
+              <div class="text-center">
+                <div id="avg-rating-score" class="font-display text-5xl font-bold text-gold-400">4.9</div>
+                <div class="text-gold-400 text-sm tracking-widest mt-1">★★★★★</div>
+                <div id="total-reviews-count" class="text-xs text-stone-400 mt-1">4 avaliações</div>
+              </div>
+              <div id="rating-bars" class="flex-1 space-y-1.5 text-xs"></div>
+            </div>
+          </div>
+
+          <!-- Formulário de Avaliação -->
+          <form id="review-form" class="p-6 rounded-2xl bg-forest-850 border border-gold-500/25 space-y-4">
+            <h3 class="font-display text-xl font-bold uppercase text-gold-400">Avaliar o Café Full House</h3>
+
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-stone-300 mb-2">Sua Nota *</label>
+              <div id="star-selector" class="flex items-center gap-2" role="radiogroup" aria-label="Nota de 1 a 5 estrelas">
+                <button type="button" data-star="1" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="1 estrela">★</button>
+                <button type="button" data-star="2" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="2 estrelas">★</button>
+                <button type="button" data-star="3" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="3 estrelas">★</button>
+                <button type="button" data-star="4" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="4 estrelas">★</button>
+                <button type="button" data-star="5" class="star-btn text-3xl text-gold-400 transition-transform hover:scale-110 cursor-pointer" aria-label="5 estrelas">★</button>
+                <span id="star-label" class="ml-2 text-xs text-gold-300 font-medium">5/5 - Excelente!</span>
+              </div>
+              <input type="hidden" id="review-rating" value="5" />
+            </div>
+
+            <div>
+              <label for="review-name" class="block text-xs uppercase tracking-wider text-stone-300 mb-1.5">Seu Nome *</label>
+              <input
+                type="text"
+                id="review-name"
+                required
+                placeholder="Ex: Mariana Costa"
+                class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500 focus:outline-none focus:border-gold-400"
+              />
+            </div>
+
+            <div>
+              <label for="review-category" class="block text-xs uppercase tracking-wider text-stone-300 mb-1.5">O que mais curtiu?</label>
+              <select
+                id="review-category"
+                class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              >
+                <option value="Cafés & Drinks">Cafés & Drinks</option>
+                <option value="Shows & Ambiente">Shows & Ambiente</option>
+                <option value="Atendimento & Gastronomia">Atendimento & Gastronomia</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="review-comment" class="block text-xs uppercase tracking-wider text-stone-300 mb-1.5">Seu Comentário *</label>
+              <textarea
+                id="review-comment"
+                rows="3"
+                required
+                placeholder="Conte como foi sua experiência no bar..."
+                class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500 focus:outline-none focus:border-gold-400"
+              ></textarea>
+            </div>
+
+            <label class="flex items-start gap-2.5 text-xs text-stone-300 cursor-pointer">
+              <input type="checkbox" id="review-lgpd" required class="mt-0.5 accent-gold-500" />
+              <span>
+                Concordo com a publicação do meu nome e comentário conforme a
+                <button type="button" onclick="openLgpdModal()" class="text-gold-400 underline">Política de Privacidade (LGPD)</button>.
+              </span>
+            </label>
+
+            <button
+              type="submit"
+              class="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors cursor-pointer"
+            >
+              Publicar Avaliação
+            </button>
+          </form>
+        </div>
+
+        <!-- Coluna Direita: Filtros + Lista de Avaliações -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1">
+            <button type="button" data-filter="all" class="review-filter active shrink-0 px-4 py-2 rounded-lg text-xs font-display uppercase tracking-wider font-bold border cursor-pointer">
+              Todas
+            </button>
+            <button type="button" data-filter="5" class="review-filter shrink-0 px-4 py-2 rounded-lg text-xs font-display uppercase tracking-wider font-bold border cursor-pointer">
+              5 Estrelas
+            </button>
+            <button type="button" data-filter="Cafés & Drinks" class="review-filter shrink-0 px-4 py-2 rounded-lg text-xs font-display uppercase tracking-wider font-bold border cursor-pointer">
+              Cafés & Drinks
+            </button>
+            <button type="button" data-filter="Shows & Ambiente" class="review-filter shrink-0 px-4 py-2 rounded-lg text-xs font-display uppercase tracking-wider font-bold border cursor-pointer">
+              Shows & Ambiente
+            </button>
+          </div>
+
+          <div id="reviews-list" class="space-y-4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HORÁRIOS & LOCALIZAÇÃO ================= -->
+  <section id="localizacao" class="py-20 bg-forest-850 border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-gold-400 font-display uppercase tracking-[0.25em] text-sm font-semibold">Venha Nos Visitar</span>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white">
+          Horários & Localização
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Horários -->
+        <div class="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-forest-900 border border-gold-500/25 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 pb-4 border-b border-gold-500/20">
+              <h3 class="font-display text-2xl font-bold uppercase text-gold-400">Funcionamento</h3>
+              <span id="location-status-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-forest-800 text-stone-200">
+                Verificando...
+              </span>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm">
+              <li class="flex justify-between py-1.5 border-b border-white/5 text-stone-400">
+                <span>Segunda-feira</span>
+                <span class="font-semibold text-rose-400">Fechado</span>
+              </li>
+              <li class="flex justify-between py-1.5 border-b border-white/5 text-stone-400">
+                <span>Terça-feira</span>
+                <span class="font-semibold text-rose-400">Fechado</span>
+              </li>
+              <li class="flex justify-between py-1.5 border-b border-white/5 text-stone-200">
+                <span>Quarta-feira</span>
+                <span class="font-semibold text-gold-300">16:00 às 00:00</span>
+              </li>
+              <li class="flex justify-between py-1.5 border-b border-white/5 text-stone-200">
+                <span>Quinta-feira</span>
+                <span class="font-semibold text-gold-300">16:00 às 00:00</span>
+              </li>
+              <li class="flex justify-between py-1.5 border-b border-white/5 text-stone-200">
+                <span>Sexta-feira</span>
+                <span class="font-semibold text-gold-300">18:00 às 01:00</span>
+              </li>
+              <li class="flex justify-between py-1.5 border-b border-white/5 text-stone-200">
+                <span>Sábado</span>
+                <span class="font-semibold text-gold-300">16:00 às 01:00</span>
+              </li>
+              <li class="flex justify-between py-1.5 text-stone-200">
+                <span>Domingo</span>
+                <span class="font-semibold text-gold-300">16:00 às 00:00</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gold-500/20">
+            <p class="text-sm text-stone-300">
+              <strong class="text-gold-400 block uppercase font-display tracking-wider mb-1">Endereço Oficial:</strong>
+              R. Sen. Flaquer, 684 - Centro, Santo André - SP, 09010-160
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onclick="copyAddress()"
+                class="px-4 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 border border-gold-500/30 text-gold-300 text-xs font-display uppercase tracking-wider font-bold transition-colors cursor-pointer"
+              >
+                📋 Copiar Endereço
+              </button>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=R.+Sen.+Flaquer,+684+-+Centro,+Santo+André+-+SP"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 text-xs font-display uppercase tracking-wider font-bold transition-colors"
+              >
+                Abrir no Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mapa Incorporado -->
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden border border-gold-500/25 min-h-[340px] bg-forest-900">
+          <iframe
+            title="Mapa do Café Full House Rock Bar em Santo André"
+            src="https://www.google.com/maps?q=R.+Sen.+Flaquer,+684+-+Centro,+Santo+Andr%C3%A9+-+SP&output=embed"
+            class="w-full h-full min-h-[340px] border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-forest-950 border-t border-gold-500/20 pt-14 pb-24 sm:pb-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-10 pb-10 border-b border-gold-500/15">
+        <div>
+          <span class="font-display text-2xl font-bold uppercase tracking-wider text-gold-400">
+            Café Full House Rock Bar
+          </span>
+          <p class="mt-3 text-sm text-stone-400 leading-relaxed">
+            Cafés especiais, drinks autorais, porções artesanais e rock ao vivo no coração de Santo André - SP.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-display text-sm font-bold uppercase tracking-widest text-gold-400 mb-3">Navegação</h4>
+          <ul class="space-y-2 text-sm text-stone-300">
+            <li><a href="#historia" class="hover:text-gold-400 transition-colors">Nossa História</a></li>
+            <li><a href="#cardapio" class="hover:text-gold-400 transition-colors">Cardápio</a></li>
+            <li><a href="#agenda" class="hover:text-gold-400 transition-colors">Agenda & Shows</a></li>
+            <li><a href="#avaliacoes" class="hover:text-gold-400 transition-colors">Avaliações</a></li>
+            <li><a href="#localizacao" class="hover:text-gold-400 transition-colors">Localização</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-display text-sm font-bold uppercase tracking-widest text-gold-400 mb-3">Contato & Privacidade (LGPD)</h4>
+          <ul class="space-y-2 text-sm text-stone-300">
+            <li>
+              <a href="https://wa.me/5511968288545" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors">
+                WhatsApp Reservas: (11) 96828-8545
+              </a>
+            </li>
+            <li>
+              <button type="button" onclick="openLgpdModal()" class="hover:text-gold-400 transition-colors text-left cursor-pointer">
+                Política de Privacidade & Termos (LGPD)
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openCookieModal()" class="hover:text-gold-400 transition-colors text-left cursor-pointer">
+                Gerenciar Preferências de Cookies
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
+        <p>© 2026 Café Full House Rock Bar • R. Sen. Flaquer, 684 - Centro, Santo André - SP.</p>
+        <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL DE RESERVAS (WHATSAPP) ================= -->
+  <div id="reserve-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-forest-900 border border-gold-500/40 rounded-2xl max-w-lg w-full max-h-[90dvh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+      <button
+        type="button"
+        onclick="closeReserveModal()"
+        aria-label="Fechar janela de reserva"
+        class="absolute top-4 right-4 w-10 h-10 rounded-full bg-forest-800 hover:bg-forest-700 text-stone-300 hover:text-white flex items-center justify-center cursor-pointer"
+      >
+        ✕
+      </button>
+
+      <!-- Etapa 1: Formulário -->
+      <div id="reserve-form-view">
+        <span class="text-xs font-display uppercase tracking-[0.2em] text-gold-400 font-semibold">Atendimento Direto</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold uppercase text-white mt-1">Reservar Mesa</h3>
+        <p class="text-sm text-stone-300 mt-1">
+          Preencha os dados abaixo para enviar sua solicitação diretamente ao nosso WhatsApp <strong class="text-gold-300">(11) 96828-8545</strong>.
+        </p>
+
+        <form id="reserve-form" class="mt-5 space-y-4">
+          <div>
+            <label for="res-name" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Nome Completo *</label>
+            <input
+              type="text"
+              id="res-name"
+              required
+              placeholder="Seu nome completo"
+              class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+            />
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="res-phone" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">WhatsApp / Celular *</label>
+              <input
+                type="tel"
+                id="res-phone"
+                inputmode="tel"
+                required
+                placeholder="(11) 99999-9999"
+                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              />
+            </div>
+
+            <div>
+              <label for="res-guests" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Qtd. de Pessoas *</label>
+              <select
+                id="res-guests"
+                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              >
+                <option value="2 pessoas">2 pessoas</option>
+                <option value="3 pessoas">3 pessoas</option>
+                <option value="4 pessoas" selected>4 pessoas</option>
+                <option value="6 pessoas">6 pessoas</option>
+                <option value="8+ pessoas (Grupo/Aniversário)">8+ pessoas (Grupo/Aniversário)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="res-event" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Dia / Programação *</label>
+              <select
+                id="res-event"
+                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              >
+                <option value="Quarta-Feira - Happy Hour & Café">Quarta-Feira</option>
+                <option value="Quinta-Feira - Rock & Drinks">Quinta-Feira</option>
+                <option value="Sexta-Feira - Classic Rock Night">Sexta-Feira - Classic Rock Night</option>
+                <option value="Sábado - Full House Rock Session">Sábado - Full House Rock Session</option>
+                <option value="Domingo - Acústico & Café Especial">Domingo - Acústico & Café Especial</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="res-time" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Horário de Chegada *</label>
+              <input
+                type="time"
+                id="res-time"
+                value="20:00"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="res-notes" class="block text-xs uppercase tracking-wider text-stone-300 mb-1">Observações (Opcional)</label>
+            <input
+              type="text"
+              id="res-notes"
+              placeholder="Ex: Aniversário, mesa próxima ao palco..."
+              class="w-full px-4 py-3 rounded-xl bg-forest-950 border border-gold-500/30 text-white focus:outline-none focus:border-gold-400"
+            />
+          </div>
+
+          <label class="flex items-start gap-2.5 text-xs text-stone-300 cursor-pointer pt-1">
+            <input type="checkbox" id="res-lgpd" required class="mt-0.5 accent-gold-500" />
+            <span>
+              Autorizo o uso dos meus dados exclusivamente para atendimento da reserva via WhatsApp, conforme a
+              <button type="button" onclick="openLgpdModal()" class="text-gold-400 underline">Política de Privacidade (LGPD)</button>.
+            </span>
+          </label>
+
+          <button
+            type="submit"
+            class="w-full py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-base transition-colors cursor-pointer"
+          >
+            Confirmar & Enviar no WhatsApp
+          </button>
+        </form>
+      </div>
+
+      <!-- Etapa 2: Confirmação -->
+      <div id="reserve-success-view" class="hidden text-center py-4 space-y-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mx-auto">
+          ✓
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase text-white">Protocolo Gerado!</h3>
+        <p id="reserve-protocol-badge" class="inline-block px-4 py-1.5 rounded-full bg-gold-500/20 text-gold-400 font-mono text-sm font-bold"></p>
+        <p class="text-sm text-stone-300">
+          Caso o WhatsApp não tenha aberto automaticamente, clique no botão abaixo para concluir o envio para <strong class="text-gold-300">(11) 96828-8545</strong>:
+        </p>
+
+        <div class="flex flex-col gap-3 pt-2">
+          <a
+            id="whatsapp-direct-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm transition-colors"
+          >
+            Abrir WhatsApp Agora
+          </a>
+          <button
+            type="button"
+            onclick="copyReservationSummary()"
+            class="w-full py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-gold-300 border border-gold-500/30 font-display uppercase tracking-wider text-xs font-bold cursor-pointer"
+          >
+            Copiar Comprovante da Reserva
+          </button>
+          <button
+            type="button"
+            onclick="resetReserveModal()"
+            class="text-xs text-stone-400 hover:text-white underline pt-1 cursor-pointer"
+          >
+            Fazer outra reserva
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= BANNER DE COOKIES (LGPD) ================= -->
+  <div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-50 hidden bg-forest-950/95 backdrop-blur-md border-t border-gold-500/40 p-4 sm:p-6 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+      <div class="text-xs sm:text-sm text-stone-300 max-w-3xl">
+        <strong class="text-gold-400 font-display uppercase tracking-wider block mb-1">Privacidade & Cookies (LGPD)</strong>
+        Utilizamos cookies essenciais para o funcionamento do site e cookies opcionais para melhorar sua experiência de navegação, conforme a Lei nº 13.709/2018. Consulte nossa
+        <button type="button" onclick="openLgpdModal()" class="text-gold-400 underline">Política de Privacidade</button>.
+      </div>
+      <div class="flex flex-wrap items-center gap-2.5 shrink-0 w-full sm:w-auto">
+        <button
+          type="button"
+          onclick="openCookieModal()"
+          class="px-4 py-2.5 rounded-lg border border-gold-500/40 text-gold-300 hover:bg-forest-800 text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
+        >
+          Personalizar
+        </button>
+        <button
+          type="button"
+          onclick="saveCookiePreferences(false, false)"
+          class="px-4 py-2.5 rounded-lg bg-forest-800 hover:bg-forest-700 text-stone-200 text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
+        >
+          Rejeitar Não Essenciais
+        </button>
+        <button
+          type="button"
+          onclick="saveCookiePreferences(true, true)"
+          class="px-5 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-forest-950 text-xs font-display uppercase tracking-wider font-bold cursor-pointer"
+        >
+          Aceitar Todos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL PREFERÊNCIAS DE COOKIES ================= -->
+  <div id="cookie-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-forest-900 border border-gold-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-gold-500/20">
+        <h3 class="font-display text-2xl font-bold uppercase text-gold-400">Preferências de Cookies</h3>
+        <button type="button" onclick="closeCookieModal()" class="text-stone-400 hover:text-white text-xl cursor-pointer">✕</button>
+      </div>
+
+      <div class="mt-5 space-y-4 text-sm">
+        <div class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 flex items-center justify-between gap-4">
+          <div>
+            <strong class="text-white block">Cookies Estritamente Necessários</strong>
+            <span class="text-xs text-stone-400">Indispensáveis para segurança, reservas e armazenamento do seu consentimento.</span>
+          </div>
+          <span class="text-xs font-bold uppercase text-gold-400 shrink-0">Sempre Ativo</span>
+        </div>
+
+        <label class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 flex items-center justify-between gap-4 cursor-pointer">
+          <div>
+            <strong class="text-white block">Cookies Analíticos & Desempenho</strong>
+            <span class="text-xs text-stone-400">Ajudam a entender quais páginas e horários são mais acessados.</span>
+          </div>
+          <input type="checkbox" id="cookie-analytics" class="w-5 h-5 accent-gold-500" />
+        </label>
+
+        <label class="p-4 rounded-xl bg-forest-950 border border-gold-500/20 flex items-center justify-between gap-4 cursor-pointer">
+          <div>
+            <strong class="text-white block">Cookies de Marketing & Eventos</strong>
+            <span class="text-xs text-stone-400">Permitem divulgar shows especiais e promoções do Café Full House.</span>
+          </div>
+          <input type="checkbox" id="cookie-marketing" class="w-5 h-5 accent-gold-500" />
+        </label>
+      </div>
+
+      <div class="mt-6 flex justify-end gap-3">
+        <button
+          type="button"
+          onclick="saveCustomCookies()"
+          class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
+        >
+          Salvar Minhas Preferências
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL POLÍTICA DE PRIVACIDADE (LGPD) ================= -->
+  <div id="lgpd-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-forest-900 border border-gold-500/40 rounded-2xl max-w-2xl w-full max-h-[85dvh] overflow-y-auto p-6 sm:p-8 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-gold-500/20">
+        <h3 class="font-display text-2xl font-bold uppercase text-gold-400">Política de Privacidade & LGPD</h3>
+        <button type="button" onclick="closeLgpdModal()" class="text-stone-400 hover:text-white text-xl cursor-pointer">✕</button>
+      </div>
+
+      <div class="mt-5 space-y-4 text-sm text-stone-300 leading-relaxed">
+        <p>
+          <strong class="text-white">1. Controlador dos Dados:</strong> Café Full House Rock Bar, localizado na R. Sen. Flaquer, 684 - Centro, Santo André - SP, CEP 09010-160.
+        </p>
+        <p>
+          <strong class="text-white">2. Dados Coletados e Finalidade:</strong> Coletamos apenas os dados fornecidos voluntariamente por você (nome, telefone WhatsApp, detalhes da reserva ou avaliação) com a finalidade exclusiva de confirmar reservas de mesas e exibir avaliações autorizadas no site, em conformidade com o Art. 7º da Lei nº 13.709/2018 (LGPD).
+        </p>
+        <p>
+          <strong class="text-white">3. Compartilhamento:</strong> Seus dados não são vendidos ou repassados a terceiros, sendo utilizados apenas na comunicação direta via WhatsApp oficial do estabelecimento: (11) 96828-8545.
+        </p>
+        <p>
+          <strong class="text-white">4. Direitos do Titular (Art. 18 da LGPD):</strong> Você pode solicitar a confirmação, acesso, correção ou eliminação dos seus dados a qualquer momento pelo nosso canal oficial de atendimento no WhatsApp (11) 96828-8545.
+        </p>
+      </div>
+
+      <div class="mt-6">
+        <button
+          type="button"
+          onclick="closeLgpdModal()"
+          class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-forest-950 font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
+        >
+          Entendi e Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de Feedback -->
+  <div id="toast" class="fixed top-24 right-4 z-50 hidden px-5 py-3 rounded-xl bg-gold-500 text-forest-950 font-semibold text-sm shadow-xl"></div>
+
+  <!-- JavaScript Principal -->
+  <script src="script.js"></script>
 </body>
 </html>
