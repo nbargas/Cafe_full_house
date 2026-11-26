@@ -6,6 +6,9 @@
   <title>Café Full House Rock Bar | Santo André - SP</title>
   <meta name="description" content="Café Full House Rock Bar em Santo André. Cafés especiais, drinks autorais, porções artesanais, rock ao vivo e reservas diretas pelo WhatsApp." />
 
+  <!-- Ícone na aba do navegador (Favicon) -->
+  <link rel="icon" type="image/png" href="rei.cafe.png" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,19 +54,14 @@
   <header id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-300 bg-forest-950/90 backdrop-blur-md border-b border-gold-500/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
+        <!-- Logo Canto Superior Esquerdo -->
         <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
-          <div class="w-12 h-12 shrink-0 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-3">
-            <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md" aria-hidden="true">
-              <circle cx="60" cy="60" r="56" fill="#08130D" stroke="#D4AF37" stroke-width="3" />
-              <circle cx="60" cy="60" r="50" fill="none" stroke="#D4AF37" stroke-width="1" stroke-dasharray="3 3" opacity="0.6" />
-              <path d="M36 33 L43 21 L52 29 L60 17 L68 29 L77 21 L84 33 Z" fill="#D4AF37" />
-              <path d="M34 45 H82 V65 C82 78 72 87 58 87 C44 87 34 78 34 65 Z" fill="#112419" stroke="#D4AF37" stroke-width="2.5" />
-              <path d="M82 50 H90 C95 50 98 54 98 59 C98 64 95 68 90 68 H82" fill="none" stroke="#D4AF37" stroke-width="2.5" />
-              <path d="M58 51 C58 51 47 60 47 66 C47 70 50 72 53 72 C55 72 57 71 58 69 C59 71 61 72 63 72 C66 72 69 70 69 66 C69 60 58 51 58 51 Z" fill="#D4AF37" />
-              <path d="M56 69 L54 77 H62 L60 69 Z" fill="#D4AF37" />
-              <path d="M28 91 H88" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" />
-            </svg>
+          <div class="w-12 h-12 shrink-0 rounded-full bg-black border border-gold-500/50 overflow-hidden flex items-center justify-center p-1 shadow-md transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-3">
+            <img
+              src="rei.cafe.png"
+              alt="Logo Café Full House Rock Bar"
+              class="w-full h-full object-contain"
+            />
           </div>
           <div>
             <span class="block font-display text-xl sm:text-2xl font-bold tracking-wider text-gold-400 group-hover:text-gold-300 transition-colors duration-300 leading-none uppercase">
@@ -190,20 +188,15 @@
           </div>
         </div>
 
-        <!-- Coluna Emblema -->
+        <!-- Coluna Emblema (Foto Redonda Rei do Rock) -->
         <div class="lg:col-span-5 flex justify-center hero-entrance-delayed">
-          <div class="emblem-float relative w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-forest-950/90 border-2 border-gold-500/40 p-6 flex flex-col items-center justify-center text-center shadow-2xl shadow-black/60 hover:border-gold-400 transition-colors duration-500">
-            <div class="absolute inset-3 rounded-full border border-dashed border-gold-500/30 pointer-events-none"></div>
-            <svg viewBox="0 0 120 120" class="w-28 h-28 sm:w-36 sm:h-36 mb-2" aria-hidden="true">
-              <path d="M36 33 L43 21 L52 29 L60 17 L68 29 L77 21 L84 33 Z" fill="#D4AF37" />
-              <path d="M34 45 H82 V65 C82 78 72 87 58 87 C44 87 34 78 34 65 Z" fill="#112419" stroke="#D4AF37" stroke-width="2.5" />
-              <path d="M82 50 H90 C95 50 98 54 98 59 C98 64 95 68 90 68 H82" fill="none" stroke="#D4AF37" stroke-width="2.5" />
-              <path d="M58 51 C58 51 47 60 47 66 C47 70 50 72 53 72 C55 72 57 71 58 69 C59 71 61 72 63 72 C66 72 69 70 69 66 C69 60 58 51 58 51 Z" fill="#D4AF37" />
-              <path d="M56 69 L54 77 H62 L60 69 Z" fill="#D4AF37" />
-              <path d="M28 91 H88" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" />
-            </svg>
-            <span class="font-display text-xl sm:text-2xl font-bold tracking-widest text-gold-400 uppercase">Full House</span>
-            <span class="text-xs tracking-[0.25em] text-stone-300 uppercase mt-1">Café • Drinks • Rock</span>
+          <div class="emblem-float relative w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-black border-2 border-gold-500/40 overflow-hidden flex items-center justify-center p-3 shadow-2xl shadow-black/60 hover:border-gold-400 transition-colors duration-500">
+            <div class="absolute inset-2 rounded-full border border-dashed border-gold-500/25 pointer-events-none z-10"></div>
+            <img
+              src="rei.cafe.png"
+              alt="Logotipo Café Full House Rock Bar"
+              class="w-full h-full object-contain"
+            />
           </div>
         </div>
       </div>
@@ -426,7 +419,7 @@
           Avaliações de Quem Vive o Bar
         </h2>
         <p class="mt-3 text-stone-300">
-          Sua opinião ajuda a manter nossa casa cada vez melhor. Deixe sua avaliação abaixo!
+          Avaliações 100% reais enviadas pelos nossos clientes. Deixe a sua experiência abaixo!
         </p>
       </div>
 
@@ -436,10 +429,10 @@
           <!-- Card Nota Média -->
           <div class="p-6 rounded-2xl bg-forest-850 border border-gold-500/25">
             <div class="flex items-center gap-5">
-              <div class="text-center">
-                <div id="avg-rating-score" class="font-display text-5xl font-bold text-gold-400">4.9</div>
-                <div class="text-gold-400 text-sm tracking-widest mt-1">★★★★★</div>
-                <div id="total-reviews-count" class="text-xs text-stone-400 mt-1">4 avaliações</div>
+              <div class="text-center min-w-[95px]">
+                <div id="avg-rating-score" class="font-display text-5xl font-bold text-gold-400">—</div>
+                <div id="avg-rating-stars" class="text-gold-400 text-sm tracking-widest mt-1">☆☆☆☆☆</div>
+                <div id="total-reviews-count" class="text-xs text-stone-400 mt-1">Carregando...</div>
               </div>
               <div id="rating-bars" class="flex-1 space-y-1.5 text-xs"></div>
             </div>
@@ -467,8 +460,10 @@
               <input
                 type="text"
                 id="review-name"
+                minlength="2"
+                maxlength="60"
                 required
-                placeholder="Ex: Mariana Costa"
+                placeholder="Digite seu nome"
                 class="input-field w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500"
               />
             </div>
@@ -490,8 +485,10 @@
               <textarea
                 id="review-comment"
                 rows="3"
+                minlength="5"
+                maxlength="500"
                 required
-                placeholder="Conte como foi sua experiência no bar..."
+                placeholder="Conte como foi sua experiência real no bar..."
                 class="input-field w-full px-4 py-3 rounded-xl bg-forest-900 border border-gold-500/30 text-white placeholder-stone-500"
               ></textarea>
             </div>
@@ -499,21 +496,22 @@
             <label class="flex items-start gap-2.5 text-xs text-stone-300 cursor-pointer">
               <input type="checkbox" id="review-lgpd" required class="mt-0.5 accent-gold-500" />
               <span>
-                Concordo com a publicação do meu nome e comentário conforme a
+                Concordo com a publicação pública do meu nome e comentário conforme a
                 <button type="button" onclick="openLgpdModal()" class="text-gold-400 hover:text-gold-300 underline transition-colors">Política de Privacidade (LGPD)</button>.
               </span>
             </label>
 
             <button
               type="submit"
+              id="review-submit-btn"
               class="btn-gold w-full py-3.5 rounded-xl font-display font-bold uppercase tracking-wider text-sm cursor-pointer"
             >
-              Publicar Avaliação
+              Publicar Avaliação Real
             </button>
           </form>
         </div>
 
-        <!-- Coluna Direita: Filtros + Lista de Avaliações -->
+        <!-- Coluna Direita: Filtros + Lista de Avaliações Reais -->
         <div class="lg:col-span-7 space-y-5">
           <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1">
             <button type="button" data-filter="all" class="review-filter active shrink-0 px-4 py-2 rounded-lg text-xs font-display uppercase tracking-wider font-bold border cursor-pointer">
@@ -953,7 +951,7 @@
   <!-- Toast de Feedback -->
   <div id="toast" class="fixed top-24 right-4 z-50 hidden px-5 py-3 rounded-xl bg-gold-500 text-forest-950 font-semibold text-sm shadow-xl"></div>
 
-  <!-- JavaScript Principal -->
-  <script src="script.js"></script>
+  <!-- JavaScript Principal (Módulo para Firebase) -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
