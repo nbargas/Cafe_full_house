@@ -1,14 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  onSnapshot,
-  query,
-  orderBy,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
 // ================= CONFIGURAÇÃO DO FIREBASE =================
 const firebaseConfig = {
   apiKey: "AIzaSyAznsdAHJnKHmD6KvcEZ6i6ySRdJDteOm8",
@@ -22,15 +11,24 @@ const firebaseConfig = {
 
 let db = null;
 let isFirebaseConfigured = false;
+let firestoreFns = null;
 
-try {
-  if (firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("COLE_AQUI")) {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
+async function bootFirebase() {
+  try {
+    if (!firebaseConfig.apiKey || firebaseConfig.apiKey.startsWith("COLE_AQUI")) {
+      return false;
+    }
+    const appMod = await import("https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js");
+    const fsMod = await import("https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js");
+    const app = appMod.initializeApp(firebaseConfig);
+    db = fsMod.getFirestore(app);
+    firestoreFns = fsMod;
     isFirebaseConfigured = true;
+    return true;
+  } catch (err) {
+    console.error("Erro ao inicializar o Firebase:", err);
+    return false;
   }
-} catch (err) {
-  console.error("Erro ao inicializar o Firebase:", err);
 }
 
 // ================= DADOS DO CARDÁPIO =================
@@ -190,7 +188,6 @@ function initNavigation() {
     link.addEventListener("click", closeMobileMenu);
   });
 
-  // Fechar modais com tecla ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeReserveModal();
@@ -247,15 +244,12 @@ function updateOperatingStatus() {
   const heroText = document.getElementById("hero-status-text");
   const locBadge = document.getElementById("location-status-badge");
 
-  // Horário atual de São Paulo
   const nowSp = new Date(
     new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" })
   );
-  const day = nowSp.getDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
+  const day = nowSp.getDay();
   const currentMinutes = nowSp.getHours() * 60 + nowSp.getMinutes();
 
-  // Tabela de horários (em minutos a partir da 00:00)
-  // Fechamento após meia-noite representado por 24*60 + minutos
   const schedule = {
     0: { open: 16 * 60, close: 24 * 60, label: "Domingo • 16h às 00h" },
     1: null,
@@ -266,7 +260,6 @@ function updateOperatingStatus() {
     6: { open: 16 * 60, close: 25 * 60, label: "Sábado • 16h às 01h" }
   };
 
-  // Verifica se ainda está aberto da madrugada do dia anterior (ex: sexta/sábado até 01:00)
   const prevDay = (day + 6) % 7;
   const prevSched = schedule[prevDay];
   const isOpenFromYesterday =
@@ -393,7 +386,7 @@ function initStarSelector() {
 }
 
 // ================= SISTEMA DE AVALIAÇÕES REAIS (FIREBASE) =================
-function initReviewsSystem() {
+async function initReviewsSystem() {
   const filterButtons = document.querySelectorAll(".review-filter");
   filterButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -409,14 +402,17 @@ function initReviewsSystem() {
     reviewForm.addEventListener("submit", handleReviewSubmit);
   }
 
-  if (!isFirebaseConfigured || !db) {
+  const connected = await bootFirebase();
+
+  if (!connected || !db || !firestoreFns) {
     updateRatingSummary([]);
     renderReviewsEmptyState(
-      "Banco de dados não configurado. Verifique as chaves do Firebase no arquivo script.js."
+      "Conecte-se à internet ou abra pelo link publicado (GitHub Pages / Live Server) para carregar as avaliações em tempo real."
     );
     return;
   }
 
+  const { collection, onSnapshot, query, orderBy } = firestoreFns;
   const reviewsRef = collection(db, "reviews");
   const q = query(reviewsRef, orderBy("createdAt", "desc"));
 
@@ -434,7 +430,7 @@ function initReviewsSystem() {
       console.error("Erro ao carregar avaliações:", error);
       updateRatingSummary([]);
       renderReviewsEmptyState(
-        "Não foi possível carregar as avaliações agora. Verifique as regras do Firestore."
+        "Não foi possível carregar as avaliações agora. Verifique se as regras do Firestore foram publicadas."
       );
     }
   );
@@ -442,8 +438,8 @@ function initReviewsSystem() {
 
 async function handleReviewSubmit(e) {
   e.preventDefault();
-  if (!isFirebaseConfigured || !db) {
-    showToast("Configure o Firebase antes de publicar avaliações.");
+  if (!isFirebaseConfigured || !db || !firestoreFns) {
+    showToast("Banco de dados indisponível neste modo de visualização.");
     return;
   }
 
@@ -469,6 +465,7 @@ async function handleReviewSubmit(e) {
   submitBtn.textContent = "Publicando...";
 
   try {
+    const { collection, addDoc, serverTimestamp } = firestoreFns;
     await addDoc(collection(db, "reviews"), {
       name,
       rating,
@@ -483,7 +480,7 @@ async function handleReviewSubmit(e) {
     showToast("Obrigado! Sua avaliação real foi publicada.");
   } catch (err) {
     console.error("Erro ao publicar avaliação:", err);
-    showToast("Erro ao enviar avaliação. Tente novamente em instantes.");
+    showToast("Erro ao enviar avaliação. Confira se publicou as regras no Firebase.");
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
